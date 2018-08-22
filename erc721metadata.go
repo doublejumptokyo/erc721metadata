@@ -13,8 +13,11 @@ type Property struct {
 	Description string `json:"description"`
 }
 
-// NewERC721Metadata returns *NewERC721Metadata
-func NewERC721Metadata(title string) (*ERC721Metadata, error) {
+// NewERC721Metadata is alias to NewERC721ObjectMetadata
+var NewERC721Metadata = NewERC721ObjectMetadata
+
+// NewERC721ObjectMetadata returns *NewERC721Metadata (type: object)
+func NewERC721ObjectMetadata(title string) (*ERC721Metadata, error) {
 	return &ERC721Metadata{
 		Title:      title,
 		Type:       "object",
