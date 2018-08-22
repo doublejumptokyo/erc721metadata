@@ -13,9 +13,22 @@ var desiredJSONString = `
   "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png",
   "description": "Generic puff description. This really should be customized.",
   "external_url": "https://cryptopuff.io/3",
+  "attributes": {
+    "level": 3,
+    "weapon_power": 55,
+    "personality": "sad",
+    "stamina": 11.7
+  },
   "background_color": "00FFFF"
 }
 `
+
+// type attributes struct {
+// 	Level       int64   `json:"level"`
+// 	WeaponPower int64   `json:"weapon_power"`
+// 	Personality string  `json:"personality"`
+// 	Stamina     float64 `json:"stamina"`
+// }
 
 func TestERC721Metadata(t *testing.T) {
 
@@ -31,9 +44,20 @@ func TestERC721Metadata(t *testing.T) {
 	e.ExternalURL = "https://cryptopuff.io/3"
 	e.BackgroundColor = "00FFFF"
 
+	e.Attributes["level"] = 3
+	e.Attributes["weapon_power"] = 55
+	e.Attributes["personality"] = "sad"
+	e.Attributes["stamina"] = 11.7
+
+	ej, err := json.Marshal(e)
+	is.NoErr(err)
+
 	desired := new(ERC721Metadata)
 	err = json.Unmarshal(([]byte)(desiredJSONString), desired)
 	is.NoErr(err)
 
-	is.Equal(e, desired)
+	dj, err := json.Marshal(desired)
+	is.NoErr(err)
+
+	is.Equal(string(dj), string(ej))
 }
