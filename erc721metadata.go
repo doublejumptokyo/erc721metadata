@@ -3,14 +3,14 @@ package erc721metadata
 // ERC721Metadata is ERC721 Metadata JSON
 type ERC721Metadata struct {
 	// ERC721 EIP1047
-	Name        string                 `json:"name"`
-	Description string                 `json:"description"`
-	Image       string                 `json:"image"`
-	Attributes  map[string]interface{} `json:"attributes"` // PR#1071
+	Name        string `json:"name"`
+	Description string `json:"description"`
+	Image       string `json:"image"`
 
 	// OpenSea
-	ExternalURL     string `json:"external_url"`     // OpenSea
-	BackgroundColor string `json:"background_color"` // OpenSea
+	Attributes      map[string]interface{} `json:"attributes"`       // EIPs#1071
+	ExternalURL     string                 `json:"external_url"`     // OpenSea
+	BackgroundColor string                 `json:"background_color"` // OpenSea
 
 	// Rare Bits
 	ID                       int64    `json:"id"`
