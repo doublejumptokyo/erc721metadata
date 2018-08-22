@@ -9,7 +9,7 @@ type ERC721Metadata struct {
 
 // Property is Property define by ERC721 Metadata
 type Property struct {
-	Type        string `json:"title"`
+	Type        string `json:"type"`
 	Description string `json:"description"`
 }
 
