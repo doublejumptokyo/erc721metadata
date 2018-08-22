@@ -19,6 +19,10 @@ var desiredJSONString = `
     "personality": "sad",
     "stamina": 11.7
   },
+  "tags": [
+    "origin",
+    "shiny"
+  ],
   "background_color": "00FFFF"
 }
 `
@@ -48,6 +52,9 @@ func TestERC721Metadata(t *testing.T) {
 	e.Attributes["weapon_power"] = 55
 	e.Attributes["personality"] = "sad"
 	e.Attributes["stamina"] = 11.7
+
+	e.Tags = append(e.Tags, "origin")
+	e.Tags = append(e.Tags, "shiny")
 
 	ej, err := json.Marshal(e)
 	is.NoErr(err)
