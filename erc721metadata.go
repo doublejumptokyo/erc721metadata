@@ -1,5 +1,7 @@
 package erc721metadata
 
+import "math/big"
+
 // ERC721Metadata is ERC721 Metadata JSON
 type ERC721Metadata struct {
 	// ERC721 EIP1047
@@ -13,7 +15,7 @@ type ERC721Metadata struct {
 	BackgroundColor string                 `json:"background_color"` // OpenSea
 
 	// Rare Bits
-	ID                       int64    `json:"id"`
+	ID                       *big.Int `json:"id"`
 	TokenContractAddress     string   `json:"token_contract_address"`
 	TokenID                  string   `json:"token_id"`
 	TokenOwnerAddress        string   `json:"token_owner_address"`
