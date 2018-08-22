@@ -2,36 +2,14 @@ package erc721metadata
 
 // ERC721Metadata is ERC721 Metadata JSON Schema
 type ERC721Metadata struct {
-	Title      string              `json:"title"`
-	Type       string              `json:"type"`
-	Properties map[string]Property `json:"properties"`
+	Name            string `json:"name"`             // ERC721
+	Description     string `json:"description"`      // ERC721
+	Image           string `json:"image"`            // ERC721
+	ExternalURL     string `json:"external_url"`     // OpenSea
+	BackgroundColor string `json:"background_color"` // OpenSea
 }
-
-// Property is Property define by ERC721 Metadata
-type Property struct {
-	Type        string `json:"type"`
-	Description string `json:"description"`
-}
-
-// NewERC721Metadata is alias to NewERC721ObjectMetadata
-var NewERC721Metadata = NewERC721ObjectMetadata
 
 // NewERC721ObjectMetadata returns *NewERC721Metadata (type: object)
-func NewERC721ObjectMetadata(title string) (*ERC721Metadata, error) {
-	return &ERC721Metadata{
-		Title:      title,
-		Type:       "object",
-		Properties: make(map[string]Property),
-	}, nil
-}
-
-// AddStringProperty is add property to ERC721Metadata.Properties (type: string)
-func (e *ERC721Metadata) AddStringProperty(propertyName string, description string) error {
-	p := Property{
-		Type:        "string",
-		Description: description,
-	}
-
-	e.Properties[propertyName] = p
-	return nil
+func NewERC721Metadata() (*ERC721Metadata, error) {
+	return &ERC721Metadata{}, nil
 }
