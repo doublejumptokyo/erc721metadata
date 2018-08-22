@@ -25,8 +25,8 @@ func NewERC721ObjectMetadata(title string) (*ERC721Metadata, error) {
 	}, nil
 }
 
-// AddProperty is add property to ERC721Metadata.Properties
-func (e *ERC721Metadata) AddProperty(propertyName string, description string) error {
+// AddStringProperty is add property to ERC721Metadata.Properties (type: string)
+func (e *ERC721Metadata) AddStringProperty(propertyName string, description string) error {
 	p := Property{
 		Type:        "string",
 		Description: description,

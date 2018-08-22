@@ -36,9 +36,9 @@ func TestERC721Metadata(t *testing.T) {
 	e, err := NewERC721Metadata("Asset Metadata")
 	is.NoErr(err)
 
-	e.AddProperty("name", "Identifies the asset to which this NFT represents")
-	e.AddProperty("description", "Describes the asset to which this NFT represents")
-	e.AddProperty("image", "A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive.")
+	e.AddStringProperty("name", "Identifies the asset to which this NFT represents")
+	e.AddStringProperty("description", "Describes the asset to which this NFT represents")
+	e.AddStringProperty("image", "A URI pointing to a resource with mime type image/* representing the asset to which this NFT represents. Consider making any images at a width between 320 and 1080 pixels and aspect ratio between 1.91:1 and 4:5 inclusive.")
 
 	desired := new(ERC721Metadata)
 	err = json.Unmarshal(([]byte)(desiredJSONString), desired)
