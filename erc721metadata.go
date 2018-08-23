@@ -32,7 +32,7 @@ type ERC721Metadata struct {
 	TokenContractID          string   `json:"token_contract_id"`
 }
 
-// NewERC721ObjectMetadata returns *NewERC721Metadata
+// NewERC721Metadata returns *NewERC721Metadata
 func NewERC721Metadata() (*ERC721Metadata, error) {
 	ret := new(ERC721Metadata)
 	ret.Attributes = map[string]interface{}{}
