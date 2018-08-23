@@ -2,7 +2,6 @@ package erc721metadata
 
 import (
 	"encoding/json"
-	"math/big"
 	"testing"
 
 	"github.com/cheekybits/is"
@@ -22,14 +21,7 @@ var desiredJSONString = `
     "weapon_power": 55,
     "personality": "sad",
     "stamina": 11.7
-  },
-  "tags": [
-    "origin",
-    "shiny"
-  ],
-  "ID": 9223372036854775808,
-  "token_created_timestamp": 1534914870
-
+  }
 }
 `
 
@@ -55,12 +47,6 @@ func TestERC721Metadata(t *testing.T) {
 	e.ExternalURL = "https://cryptopuff.io/3"
 	e.BackgroundColor = "00FFFF"
 
-	// attributes object
-	// e.Attributes["level"] = 3
-	// e.Attributes["weapon_power"] = 55
-	// e.Attributes["personality"] = "sad"
-	// e.Attributes["stamina"] = 11.7
-
 	a := attributes{
 		Level:       3,
 		WeaponPower: 55,
@@ -71,16 +57,6 @@ func TestERC721Metadata(t *testing.T) {
 	is.NoErr(err)
 	raw := json.RawMessage(aByte)
 	e.Attributes = &raw
-
-	// list of string
-	e.Tags = append(e.Tags, "origin")
-	e.Tags = append(e.Tags, "shiny")
-
-	// big int
-	var ok bool
-	e.ID, ok = new(big.Int).SetString("9223372036854775808", 10)
-	is.OK(ok)
-	e.TokenCreatedTimestamp = 1534914870
 
 	ej, err := json.Marshal(e)
 	is.NoErr(err)
