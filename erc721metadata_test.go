@@ -2,6 +2,7 @@ package erc721metadata
 
 import (
 	"encoding/json"
+	"fmt"
 	"testing"
 
 	"github.com/cheekybits/is"
@@ -175,6 +176,65 @@ func TestOpenSea(t *testing.T) {
 	is.NoErr(err)
 	raw = json.RawMessage(daByte)
 	desired.Attributes = &raw
+
+	dj, err := json.Marshal(desired)
+	is.NoErr(err)
+
+	is.Equal(string(dj), string(ej))
+	//fmt.Println(string(ej))
+}
+
+var desiredRareBits = `
+{
+  "name": "Robot token #14",
+  "image_url": "https://www.robotgame.com/images/14.png",
+  "home_url": "https://www.robotgame.com/robots/14.html",
+  "description": "This is the amazing Robot #14, please buy me!",
+  "properties": [
+    {"key": "generation", "value": 4, "type": "integer"},
+    {"key": "cooldown", "value": "slow", "type": "string"}
+  ],
+  "tags": ["red","rare","fire"]
+}
+`
+
+func TestRareBit(t *testing.T) {
+	is := is.New(t)
+	var err error
+
+	e, err := NewERC721Metadata()
+	is.NoErr(err)
+
+	e.Name = "Robot token #14"
+	e.ImageURL = "https://www.robotgame.com/images/14.png"
+	e.HomeURL = "https://www.robotgame.com/robots/14.html"
+	e.Description = "This is the amazing Robot #14, please buy me!"
+
+	e.Properties = []*RareBitsProperty{
+		&RareBitsProperty{
+			Key:   "generation",
+			Value: 4,
+			Type:  "integer",
+		},
+		&RareBitsProperty{
+			Key:   "cooldown",
+			Value: "slow",
+			Type:  "string",
+		},
+	}
+
+	e.Tags = append(e.Tags, "red")
+	e.Tags = append(e.Tags, "rare")
+	e.Tags = append(e.Tags, "fire")
+
+	ej, err := json.Marshal(e)
+	is.NoErr(err)
+
+	desired := new(ERC721Metadata)
+	err = json.Unmarshal(([]byte)(desiredRareBits), desired)
+	is.NoErr(err)
+
+	fmt.Println(desired)
 
 	dj, err := json.Marshal(desired)
 	is.NoErr(err)
