@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/rmanzoku/erc721metadata.svg?style=svg)](https://circleci.com/gh/rmanzoku/erc721metadata)
+
 # erc721metadata
 erc721metadata is ERC721 `tokenURI` metadata JSON library implementation by Go.
 
