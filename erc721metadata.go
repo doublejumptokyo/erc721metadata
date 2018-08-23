@@ -1,6 +1,9 @@
 package erc721metadata
 
-import "math/big"
+import (
+	"encoding/json"
+	"math/big"
+)
 
 // ERC721Metadata is ERC721 Metadata JSON
 type ERC721Metadata struct {
@@ -10,31 +13,40 @@ type ERC721Metadata struct {
 	Image       string `json:"image"`
 
 	// OpenSea
-	Attributes      map[string]interface{} `json:"attributes"`       // EIPs#1071
-	ExternalURL     string                 `json:"external_url"`     // OpenSea
-	BackgroundColor string                 `json:"background_color"` // OpenSea
+	Attributes       *json.RawMessage `json:"attributes,omitempty"`       // EIPs#1071
+	ExternalURL      string           `json:"external_url,omitempty"`     // OpenSea
+	ExternalURLCamel string           `json:"externalUrl,omitempty"`      // OpenSea
+	BackgroundColor  string           `json:"background_color,omitempty"` // OpenSea
 
 	// Rare Bits
-	ID                       *big.Int `json:"id"`
-	TokenContractAddress     string   `json:"token_contract_address"`
-	TokenID                  string   `json:"token_id"`
-	TokenOwnerAddress        string   `json:"token_owner_address"`
-	ImageURL                 string   `json:"image_url"`
-	HomeURL                  string   `json:"home_url"`
-	URL                      string   `json:"url"`
-	Color                    string   `json:"color"`
-	Tags                     []string `json:"tags"`
-	TokenCreatedTimestamp    int64    `json:"token_created_timestamp"`
-	LastSoldTimestamp        int64    `json:"last_sold_timestamp"`
-	LastSalePrice            string   `json:"last_sale_price"`
-	EstimatedValue           string   `json:"estimated_value"`
-	TokenContractDisplayName string   `json:"token_contract_display_name"`
-	TokenContractID          string   `json:"token_contract_id"`
+	ID                       *big.Int `json:"id,omitempty"`
+	TokenContractAddress     string   `json:"token_contract_address,omitempty"`
+	TokenID                  string   `json:"token_id,omitempty"`
+	TokenOwnerAddress        string   `json:"token_owner_address,omitempty"`
+	ImageURL                 string   `json:"image_url,omitempty"`
+	HomeURL                  string   `json:"home_url,omitempty"`
+	URL                      string   `json:"url,omitempty"`
+	Color                    string   `json:"color,omitempty"`
+	Tags                     []string `json:"tags,omitempty"`
+	TokenCreatedTimestamp    int64    `json:"token_created_timestamp,omitempty"`
+	LastSoldTimestamp        int64    `json:"last_sold_timestamp,omitempty"`
+	LastSalePrice            string   `json:"last_sale_price,omitempty"`
+	EstimatedValue           string   `json:"estimated_value,omitempty"`
+	TokenContractDisplayName string   `json:"token_contract_display_name,omitempty"`
+	TokenContractID          string   `json:"token_contract_id,omitempty"`
+}
+
+// OpenSeaAttributes is attrebute object defined by OpenSea
+type OpenSeaAttributes struct {
+	TraitType   string      `json:"trait_type"`
+	Value       interface{} `json:"value"`
+	DisplayType string      `json:"display_type,omitempty"`
+	MaxValue    int64       `json:"max_value,omitempty"`
 }
 
 // NewERC721Metadata returns *NewERC721Metadata
 func NewERC721Metadata() (*ERC721Metadata, error) {
 	ret := new(ERC721Metadata)
-	ret.Attributes = map[string]interface{}{}
+	ret.Attributes = nil
 	return ret, nil
 }
