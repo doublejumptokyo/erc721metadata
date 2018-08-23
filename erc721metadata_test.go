@@ -2,7 +2,6 @@ package erc721metadata
 
 import (
 	"encoding/json"
-	"fmt"
 	"testing"
 
 	"github.com/cheekybits/is"
@@ -233,8 +232,6 @@ func TestRareBit(t *testing.T) {
 	desired := new(ERC721Metadata)
 	err = json.Unmarshal(([]byte)(desiredRareBits), desired)
 	is.NoErr(err)
-
-	fmt.Println(desired)
 
 	dj, err := json.Marshal(desired)
 	is.NoErr(err)
