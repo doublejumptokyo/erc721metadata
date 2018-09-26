@@ -12,10 +12,9 @@ type ERC721Metadata struct {
 	Image       string `json:"image,omitempty"`
 
 	// OpenSea
-	Attributes       *json.RawMessage `json:"attributes,omitempty"`       // EIPs#1071
-	ExternalURL      string           `json:"external_url,omitempty"`     // OpenSea
-	ExternalURLCamel string           `json:"externalUrl,omitempty"`      // OpenSea
-	BackgroundColor  string           `json:"background_color,omitempty"` // OpenSea
+	Attributes      *json.RawMessage `json:"attributes,omitempty"`       // EIPs#1071
+	ExternalURL     string           `json:"external_url,omitempty"`     // OpenSea
+	BackgroundColor string           `json:"background_color,omitempty"` // OpenSea
 
 	// Rare Bits
 	ImageURL   string              `json:"image_url,omitempty"`

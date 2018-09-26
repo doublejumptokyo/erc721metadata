@@ -105,7 +105,7 @@ var desiredOpenSea = `
     }
   ],
   "description": "Generic puff description. Check out this link to ethmoji.io\nHave a new line or two\n\n This really should be customized.",
-  "externalUrl": "https://cryptopuff.io/1",
+  "external_url": "https://cryptopuff.io/1",
   "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/1.png",
   "name": "Jessica McDonald"
 }
@@ -122,7 +122,7 @@ func TestOpenSea(t *testing.T) {
 	e.Name = "Jessica McDonald"
 	e.Image = "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/1.png"
 	e.Description = "Generic puff description. Check out this link to ethmoji.io\nHave a new line or two\n\n This really should be customized."
-	e.ExternalURLCamel = "https://cryptopuff.io/1"
+	e.ExternalURL = "https://cryptopuff.io/1"
 
 	a := []OpenSeaAttributes{
 		OpenSeaAttributes{
