@@ -44,3 +44,15 @@ func NewERC721Metadata() (*ERC721Metadata, error) {
 	ret.Attributes = nil
 	return ret, nil
 }
+
+// UnmarshalERC721Metadata unmarshals ERC721Metadata
+func UnmarshalERC721Metadata(data []byte) (*ERC721Metadata, error) {
+	var r = &ERC721Metadata{}
+	err := json.Unmarshal(data, r)
+	return r, err
+}
+
+// Marshal marshals ERC721Metadata
+func (r *ERC721Metadata) Marshal() ([]byte, error) {
+	return json.Marshal(r)
+}
