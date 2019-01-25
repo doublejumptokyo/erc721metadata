@@ -17,10 +17,11 @@ type ERC721Metadata struct {
 	BackgroundColor string           `json:"background_color,omitempty"` // OpenSea
 
 	// Rare Bits
-	ImageURL   string              `json:"image_url,omitempty"`
-	HomeURL    string              `json:"home_url,omitempty"`
-	Tags       []string            `json:"tags,omitempty"`
-	Properties []*RareBitsProperty `json:"properties,omitempty"`
+	ImageURL   string                 `json:"image_url,omitempty"`
+	HomeURL    string                 `json:"home_url,omitempty"`
+	Tags       []string               `json:"tags,omitempty"`
+	Properties []*RareBitsProperty    `json:"properties,omitempty"`
+	ExtraData  map[string]interface{} `json:"extra_data,omitempty"`
 }
 
 // OpenSeaAttributes is attrebute object defined by OpenSea
