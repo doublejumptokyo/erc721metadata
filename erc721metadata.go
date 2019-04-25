@@ -8,7 +8,7 @@ import (
 type ERC721Metadata struct {
 	// ERC721 EIP1047
 	Name        string `json:"name"`
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 	Image       string `json:"image,omitempty"`
 
 	// OpenSea
@@ -54,6 +54,17 @@ func UnmarshalERC721Metadata(data []byte) (*ERC721Metadata, error) {
 }
 
 // Marshal marshals ERC721Metadata
-func (r *ERC721Metadata) Marshal() ([]byte, error) {
-	return json.Marshal(r)
+func (e *ERC721Metadata) Marshal() ([]byte, error) {
+	return json.Marshal(e)
+}
+
+// SetRawAttributes convert to JSON.RawMessage and set to Attributes
+func (e *ERC721Metadata) SetRawAttributes(attributes map[string]interface{}) error {
+	byte, err := json.Marshal(attributes)
+	if err != nil {
+		return err
+	}
+	raw := json.RawMessage(byte)
+	e.Attributes = &raw
+	return nil
 }
