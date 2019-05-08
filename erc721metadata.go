@@ -2,6 +2,7 @@ package erc721metadata
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // ERC721Metadata is ERC721 Metadata JSON
@@ -17,11 +18,14 @@ type ERC721Metadata struct {
 	BackgroundColor string           `json:"background_color,omitempty"` // OpenSea
 
 	// Rare Bits
-	ImageURL   string                 `json:"image_url,omitempty"`
-	HomeURL    string                 `json:"home_url,omitempty"`
-	Tags       []string               `json:"tags,omitempty"`
-	Properties []*RareBitsProperty    `json:"properties,omitempty"`
-	ExtraData  map[string]interface{} `json:"extra_data,omitempty"`
+	ImageURL   string              `json:"image_url,omitempty"`
+	HomeURL    string              `json:"home_url,omitempty"`
+	Tags       []string            `json:"tags,omitempty"`
+	Properties []*RareBitsProperty `json:"properties,omitempty"`
+
+	// MCH
+	ExtraData map[string]interface{} `json:"extra_data,omitempty"`
+	Timestamp int64                  `json:"timestamp"`
 }
 
 // OpenSeaAttributes is attrebute object defined by OpenSea
@@ -43,6 +47,7 @@ type RareBitsProperty struct {
 func NewERC721Metadata() (*ERC721Metadata, error) {
 	ret := new(ERC721Metadata)
 	ret.Attributes = nil
+	ret.Timestamp = time.Now().Unix()
 	return ret, nil
 }
 
