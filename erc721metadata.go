@@ -27,8 +27,7 @@ type ERC721Metadata struct {
 	ExtraData map[string]interface{} `json:"extra_data,omitempty"`
 	Timestamp int64                  `json:"timestamp"`
 
-	// Samsung
-	OwnerAddress string `json:"owner_address"`
+	Language string `json:"language"`
 }
 
 // OpenSeaAttributes is attrebute object defined by OpenSea
