@@ -53,12 +53,7 @@ func TestERC721Metadata(t *testing.T) {
 		Personality: "sad",
 		Stamina:     11.7,
 	}
-	aByte, err := json.Marshal(a)
-	is.NoErr(err)
-	raw := json.RawMessage(aByte)
-	e.Attributes = &raw
-
-	ej, err := json.Marshal(e)
+	err = e.SetAttributes(a)
 	is.NoErr(err)
 
 	desired := new(ERC721Metadata)
@@ -68,6 +63,8 @@ func TestERC721Metadata(t *testing.T) {
 	dj, err := json.Marshal(desired)
 	is.NoErr(err)
 
+	ej, err := json.Marshal(desired)
+	is.NoErr(err)
 	is.Equal(string(dj), string(ej))
 	//fmt.Println(string(ej))
 }
@@ -117,6 +114,8 @@ func TestOpenSea(t *testing.T) {
 
 	e, err := NewERC721Metadata()
 	is.NoErr(err)
+	tmp := *e
+	desired := &tmp
 
 	// string values
 	e.Name = "Jessica McDonald"
@@ -155,15 +154,12 @@ func TestOpenSea(t *testing.T) {
 		},
 	}
 
-	aByte, err := json.Marshal(a)
+	err = e.SetAttributes(a)
 	is.NoErr(err)
-	raw := json.RawMessage(aByte)
-	e.Attributes = &raw
 
 	ej, err := json.Marshal(e)
 	is.NoErr(err)
 
-	desired := new(ERC721Metadata)
 	err = json.Unmarshal(([]byte)(desiredOpenSea), desired)
 	is.NoErr(err)
 
@@ -171,10 +167,8 @@ func TestOpenSea(t *testing.T) {
 	err = json.Unmarshal(([]byte)(*desired.Attributes), da)
 	is.NoErr(err)
 
-	daByte, err := json.Marshal(da)
+	err = desired.SetAttributes(da)
 	is.NoErr(err)
-	raw = json.RawMessage(daByte)
-	desired.Attributes = &raw
 
 	dj, err := json.Marshal(desired)
 	is.NoErr(err)
@@ -203,6 +197,8 @@ func TestRareBit(t *testing.T) {
 
 	e, err := NewERC721Metadata()
 	is.NoErr(err)
+	tmp := *e
+	desired := &tmp
 
 	e.Name = "Robot token #14"
 	e.ImageURL = "https://www.robotgame.com/images/14.png"
@@ -229,7 +225,6 @@ func TestRareBit(t *testing.T) {
 	ej, err := json.Marshal(e)
 	is.NoErr(err)
 
-	desired := new(ERC721Metadata)
 	err = json.Unmarshal(([]byte)(desiredRareBits), desired)
 	is.NoErr(err)
 
