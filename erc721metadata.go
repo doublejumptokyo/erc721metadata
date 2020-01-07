@@ -25,9 +25,9 @@ type ERC721Metadata struct {
 
 	// MCH
 	ExtraData map[string]interface{} `json:"extra_data,omitempty"`
-	Timestamp int64                  `json:"timestamp"`
+	Timestamp int64                  `json:"timestamp,omitempty"`
 
-	Language string `json:"language"`
+	Language string `json:"language,omitempty"`
 }
 
 // OpenSeaAttributes is attrebute object defined by OpenSea
@@ -50,6 +50,7 @@ func NewERC721Metadata() (*ERC721Metadata, error) {
 	ret := new(ERC721Metadata)
 	ret.Attributes = nil
 	ret.Timestamp = time.Now().Unix()
+	ret.Language = "en"
 	return ret, nil
 }
 
