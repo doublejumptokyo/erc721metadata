@@ -66,8 +66,8 @@ func (e *ERC721Metadata) Marshal() ([]byte, error) {
 	return json.Marshal(e)
 }
 
-// SetRawAttributes convert to JSON.RawMessage and set to Attributes
-func (e *ERC721Metadata) SetRawAttributes(attributes map[string]interface{}) error {
+// SetAttributes convert to JSON.RawMessage and set to Attributes
+func (e *ERC721Metadata) SetAttributes(attributes interface{}) error {
 	byte, err := json.Marshal(attributes)
 	if err != nil {
 		return err
