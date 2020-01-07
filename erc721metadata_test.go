@@ -39,6 +39,8 @@ func TestERC721Metadata(t *testing.T) {
 
 	e, err := NewERC721Metadata()
 	is.NoErr(err)
+	tmp := *e
+	desired := &tmp
 
 	// string values
 	e.Name = "Dave McPufflestein"
@@ -56,17 +58,16 @@ func TestERC721Metadata(t *testing.T) {
 	err = e.SetAttributes(a)
 	is.NoErr(err)
 
-	desired := new(ERC721Metadata)
 	err = json.Unmarshal(([]byte)(desiredJSONString), desired)
 	is.NoErr(err)
 
 	dj, err := json.Marshal(desired)
 	is.NoErr(err)
 
-	ej, err := json.Marshal(desired)
+	ej, err := json.Marshal(e)
 	is.NoErr(err)
 	is.Equal(string(dj), string(ej))
-	//fmt.Println(string(ej))
+	// fmt.Println(string(ej))
 }
 
 var desiredOpenSea = `
