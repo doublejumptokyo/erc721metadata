@@ -1,4 +1,4 @@
-module erc721metadata
+module github.com/doublejumptokyo/erc721metadata
 
 go 1.13
 
