@@ -2,6 +2,9 @@ package erc721metadata
 
 import (
 	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
 	"time"
 )
 
@@ -43,6 +46,29 @@ type RareBitsProperty struct {
 	Key   string      `json:"key"`
 	Value interface{} `json:"value"`
 	Type  string      `json:"type"`
+}
+
+// FetchERC721Metadata returns *NewERC721Metadata fetch Metadata from tokenURI
+func FetchERC721Metadata(tokenURI string) (*ERC721Metadata, error) {
+	client := new(http.Client)
+	req, err := http.NewRequest("GET", tokenURI, nil)
+	req.Header.Add("Content-Type", "application/json")
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return nil, err
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("Status: %d, msg: %s", resp.StatusCode, string(body))
+	}
+
+	return UnmarshalERC721Metadata(body)
 }
 
 // NewERC721Metadata returns *NewERC721Metadata
