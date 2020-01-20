@@ -55,7 +55,7 @@ func FetchERC721Metadata(tokenURI string) (*ERC721Metadata, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Add("Content-Type", "application/json")
+	req.Header.Add("Accept", "application/json")
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
 
