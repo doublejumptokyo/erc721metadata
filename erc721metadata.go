@@ -15,10 +15,16 @@ type ERC721Metadata struct {
 	Description string `json:"description,omitempty"`
 	Image       string `json:"image,omitempty"`
 
+	// Extra
+	Timestamp int64  `json:"timestamp,omitempty"`
+	Language  string `json:"language,omitempty"`
+
 	// OpenSea
-	Attributes      *json.RawMessage `json:"attributes,omitempty"`       // EIPs#1071
-	ExternalURL     string           `json:"external_url,omitempty"`     // OpenSea
-	BackgroundColor string           `json:"background_color,omitempty"` // OpenSea
+	Attributes      *json.RawMessage `json:"attributes,omitempty"` // EIPs#1071
+	ExternalURL     string           `json:"external_url,omitempty"`
+	BackgroundColor string           `json:"background_color,omitempty"`
+	AnimationURL    string           `json:"animation_url"`
+	YoutubeURL      string           `json:"youtube_url"`
 
 	// Rare Bits
 	ImageURL   string              `json:"image_url,omitempty"`
@@ -28,9 +34,6 @@ type ERC721Metadata struct {
 
 	// MCH
 	ExtraData map[string]interface{} `json:"extra_data,omitempty"`
-	Timestamp int64                  `json:"timestamp,omitempty"`
-
-	Language string `json:"language,omitempty"`
 }
 
 // OpenSeaAttributes is attrebute object defined by OpenSea
@@ -76,7 +79,7 @@ func NewERC721Metadata() (*ERC721Metadata, error) {
 	ret := new(ERC721Metadata)
 	ret.Attributes = nil
 	ret.Timestamp = time.Now().Unix()
-	ret.Language = "en"
+	ret.Language = "en-US"
 	return ret, nil
 }
 
