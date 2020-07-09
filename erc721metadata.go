@@ -23,8 +23,8 @@ type ERC721Metadata struct {
 	Attributes      *json.RawMessage `json:"attributes,omitempty"` // EIPs#1071
 	ExternalURL     string           `json:"external_url,omitempty"`
 	BackgroundColor string           `json:"background_color,omitempty"`
-	AnimationURL    string           `json:"animation_url"`
-	YoutubeURL      string           `json:"youtube_url"`
+	AnimationURL    string           `json:"animation_url,omitempty"`
+	YoutubeURL      string           `json:"youtube_url,omitempty"`
 
 	// Rare Bits
 	ImageURL   string              `json:"image_url,omitempty"`
