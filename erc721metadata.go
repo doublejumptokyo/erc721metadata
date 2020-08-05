@@ -60,6 +60,9 @@ func FetchERC721Metadata(tokenURI string) (*ERC721Metadata, error) {
 	}
 	req.Header.Add("Accept", "application/json")
 	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
